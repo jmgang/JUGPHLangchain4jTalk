@@ -24,12 +24,12 @@ public class ConversationRAGChatbotExample {
     public static void main(String[] args) {
 
         var document = UrlDocumentLoader
-                .load("https://github.com/JUGPH/.github/tree/main/profile", new TextDocumentParser());
+                .load("https://www.eac.edu.ph/research-and-development-office/", new TextDocumentParser());
 
         var textExtractor = new HtmlTextExtractor();
         var transformedDocument = textExtractor.transform(document);
 
-        System.out.println(transformedDocument);
+//        System.out.println(transformedDocument);
 
         EmbeddingStore<TextSegment> embeddingStore = WeaviateEmbeddingStore.builder()
                 .apiKey(System.getenv("WEAVIATE_API_KEY"))
@@ -42,11 +42,11 @@ public class ConversationRAGChatbotExample {
         EmbeddingModel embeddingModel = OpenAiEmbeddingModel
                 .builder()
                 .apiKey(System.getenv("OPENAI_API_KEY"))
-                .modelName("text-embedding-ada-002")
+                .modelName("text-embedding-3-small")
                 .build();
 
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
-                .documentSplitter(DocumentSplitters.recursive(1000, 0))
+                .documentSplitter(DocumentSplitters.recursive(500, 0))
                 .embeddingModel(embeddingModel)
                 .embeddingStore(embeddingStore)
                 .build();
@@ -68,10 +68,10 @@ public class ConversationRAGChatbotExample {
                 .build();
 
         var userMessages = Arrays.asList(
-                "Hi, I'm Jansen. Can you give me tips to become a more efficient java developer?",
-                "By the way, who are the community leaders of the Java User Group Philippines?",
-                "What is their vision and mission?",
-                "What are their social media links?");
+                "What does the Research and Development Office of EAC-Cavite Campus aim to do?",
+                "Name at least 3 forged linkages of the institution",
+                "What are some services offered by the RDO of EAC-Cavite?",
+                "What is the specific address of the Cavite campus of EAC?");
         var output = new StringBuilder();
 
         System.out.println("============================================");

@@ -15,7 +15,7 @@ import static java.time.Duration.ofSeconds;
 public class JavaNewsRetrieverToolsExample {
     static class JavaNewsRetriever {
 
-        @Tool("Retrieves the latest java news. Limit to the 3 latest news")
+        @Tool("Retrieves the latest java news. Strictly limit to the 3 latest news")
         String retrieveJavaNews() {
             Document javaNews = UrlDocumentLoader.load("https://dev.java/news/", new TextDocumentParser());
             Document transformedJavaNews = new HtmlTextExtractor(".container", null, true)
@@ -32,7 +32,7 @@ public class JavaNewsRetrieverToolsExample {
     interface NewsPrettierAssistant {
 
         @UserMessage("Given a jumbled java news {{it}}, summarize each, and list down them in numerical format, latest to oldest. " +
-                "Include details such as url and date announced.")
+                "Include details such as url and date announced")
         String prettify(String userMessage);
     }
 

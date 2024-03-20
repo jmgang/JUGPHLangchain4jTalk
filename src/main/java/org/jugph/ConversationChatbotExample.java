@@ -27,8 +27,8 @@ public class ConversationChatbotExample {
 
         var userMessages = Arrays.asList(
                 "Hi, I'm Jansen. Can you give me tips to become a more efficient java developer?",
-                "By the way, who are the community leaders of the Java User Group Philippines?",
-                "Also, can you tell me their sponsors?",
+                "What are some services offered by the RDO of EAC-Cavite?",
+                "What is the specific address of the Cavite campus of EAC?",
                 "What's my name and what was the first tip you gave me earlier?");
         var output = new StringBuilder();
 
