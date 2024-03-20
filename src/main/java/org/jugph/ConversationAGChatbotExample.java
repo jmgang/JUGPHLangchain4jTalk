@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 import static java.time.Duration.ofSeconds;
 
-public class ConversationRAGChatbotExample {
+public class ConversationAGChatbotExample {
 
     public static void main(String[] args) {
 

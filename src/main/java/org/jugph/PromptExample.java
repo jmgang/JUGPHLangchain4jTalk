@@ -4,6 +4,7 @@ import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.time.Duration.ofSeconds;
 
@@ -19,8 +20,8 @@ public class PromptExample {
                 "Limit your answer to 2-3 lines.";
         PromptTemplate promptTemplate = PromptTemplate.from(template);
 
-        var variables = new HashMap<>();
-        variables.put("userType", "software engineer");
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("userType", "student");
         variables.put("javaTopic", "Java 17 features");
 
         Prompt prompt = promptTemplate.apply(variables);

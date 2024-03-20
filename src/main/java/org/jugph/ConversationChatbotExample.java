@@ -5,7 +5,6 @@ import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static dev.langchain4j.data.message.SystemMessage.systemMessage;
 import static java.time.Duration.ofSeconds;
@@ -18,7 +17,7 @@ public class ConversationChatbotExample {
                 .timeout(ofSeconds(120))
                 .build();
 
-        MessageWindowChatMemory memory = MessageWindowChatMemory.withMaxMessages(10);
+        MessageWindowChatMemory memory = MessageWindowChatMemory.withMaxMessages(5);
         memory.add(systemMessage("You are a friendly conversational/instructor chatbot. Always limit your response to 2 lines max."));
 
         ConversationalChain chain = ConversationalChain.builder()

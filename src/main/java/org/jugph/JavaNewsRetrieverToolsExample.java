@@ -2,7 +2,8 @@ package org.jugph;
 
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.data.document.Document;
-import dev.langchain4j.data.document.UrlDocumentLoader;
+import dev.langchain4j.data.document.loader.UrlDocumentLoader;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.transformer.HtmlTextExtractor;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.openai.OpenAiChatModel;
@@ -16,7 +17,7 @@ public class JavaNewsRetrieverToolsExample {
 
         @Tool("Retrieves the latest java news. Limit to the 3 latest news")
         String retrieveJavaNews() {
-            Document javaNews = UrlDocumentLoader.load("https://dev.java/news/");
+            Document javaNews = UrlDocumentLoader.load("https://dev.java/news/", new TextDocumentParser());
             Document transformedJavaNews = new HtmlTextExtractor(".container", null, true)
                     .transform(javaNews);
 
@@ -38,7 +39,7 @@ public class JavaNewsRetrieverToolsExample {
     public static void main(String[] args) {
         var model = OpenAiChatModel.builder()
                 .apiKey(System.getenv("OPENAI_API_KEY"))
-                .timeout(ofSeconds(120))
+                .timeout(ofSeconds(200))
                 .build();
 
         var assistant = AiServices.builder(Assistant.class)
